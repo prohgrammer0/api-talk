@@ -1,0 +1,23 @@
+[project]
+name = "api-talk"
+version = "0.1.0"
+description = "Brown bag demo: SQLite queries, Python scripts, and a FastAPI REST API."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+]
+
+[project.scripts]
+api-talk-seed = "api_talk.setup:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/api_talk"]
