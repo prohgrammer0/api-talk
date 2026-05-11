@@ -12,12 +12,14 @@ items. The project includes:
 ## Requirements
 
 - Python 3.11 or newer
-- `uv`
 
 Install dependencies:
 
 ```bash
-uv sync
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ## Database
@@ -31,7 +33,7 @@ data/orders.db
 Seed or reset the database:
 
 ```bash
-uv run python scripts/setup_data.py
+python scripts/setup_data.py
 ```
 
 The database is built from:
@@ -50,7 +52,7 @@ Tables:
 Start the FastAPI server:
 
 ```bash
-uv run uvicorn api_talk.api:app --reload
+python -m uvicorn api_talk.api:app --reload
 ```
 
 Open the generated FastAPI docs:
@@ -226,30 +228,30 @@ The scripts in `scripts/` do not call the API. They connect directly to
 Customers:
 
 ```bash
-uv run python scripts/list_customers.py
-uv run python scripts/get_customer.py 1
-uv run python scripts/customer_spend.py
+python scripts/list_customers.py
+python scripts/get_customer.py 1
+python scripts/customer_spend.py
 ```
 
 Orders:
 
 ```bash
-uv run python scripts/list_orders.py
-uv run python scripts/list_orders.py --status open
-uv run python scripts/get_order.py 1001
-uv run python scripts/create_order.py
-uv run python scripts/replace_order.py 1001
-uv run python scripts/update_order_status.py 1001 shipped
-uv run python scripts/delete_order.py 1004
+python scripts/list_orders.py
+python scripts/list_orders.py --status open
+python scripts/get_order.py 1001
+python scripts/create_order.py
+python scripts/replace_order.py 1001
+python scripts/update_order_status.py 1001 shipped
+python scripts/delete_order.py 1004
 ```
 
 Order items:
 
 ```bash
-uv run python scripts/list_order_items.py
-uv run python scripts/list_order_items.py --order-id 1001
-uv run python scripts/get_order_item.py 1
-uv run python scripts/get_order_items.py 1001
+python scripts/list_order_items.py
+python scripts/list_order_items.py --order-id 1001
+python scripts/get_order_item.py 1
+python scripts/get_order_items.py 1001
 ```
 
 ## Implementation Guide
@@ -319,11 +321,11 @@ Current write endpoints:
 Compile-check the Python files:
 
 ```bash
-uv run python -m compileall src scripts
+python -m compileall src scripts
 ```
 
 Reset the database before manual testing:
 
 ```bash
-uv run python scripts/setup_data.py
+python scripts/setup_data.py
 ```
